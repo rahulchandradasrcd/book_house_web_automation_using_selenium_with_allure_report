@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="D:/Rahul Personal/Web Automation/Bookhouse.com.bdAutomationProjectPOM/BookHouseAutomationPOM/src/test/java/TestCases">
+          name="D:/Rahul Personal/Web Automation/BookHouse.com.bdAutomationProjectPOM/BookHouseAutomationPOM/src/test/java/TestCases">
         <classes/>
     </test>
 </suite>
