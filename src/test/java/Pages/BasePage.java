@@ -1,10 +1,7 @@
 package Pages;
 
 import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.ByteArrayInputStream;
@@ -27,6 +24,7 @@ public class BasePage {
 
     public void writeOnElement(By locator, String text){
         getElement(locator).click();
+        getElement(locator).clear();
         getElement(locator).sendKeys(text);
     }
 
@@ -52,7 +50,11 @@ public class BasePage {
         actions.click(getElement(locator)).build().perform();
     }
 
-
+    public void ScrollElement(By locator){
+        JavascriptExecutor scroll = (JavascriptExecutor) getDriver();
+        WebElement next_page = getElement(locator);
+        scroll.executeScript("arguments[0].scrollIntoView()", next_page);
+    }
     public void addScreenshot() {
         Allure.addAttachment("After Test", new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
