@@ -25,9 +25,7 @@ public class TestLoginPage extends DriverSetup {
     @Description("User Login With ValidCredentials")
     @Severity(SeverityLevel.BLOCKER)
     public void loginWithValidData(String phone_number, String pass){
-        loginPage.writeOnElement(loginPage.email_input_box, phone_number);
-        loginPage.writeOnElement(loginPage.pass_input_box, pass);
-        loginPage.clickOnElement(loginPage.login_btn);
+        loginPage.doLogin(phone_number, pass);
         homePage.HoverElement(homePage.sign_in_hover);
         Assert.assertTrue(homePage.is_element_visible(homePage.logout_hover_btn));
     }

@@ -24,12 +24,8 @@ public class WriterPage extends BasePage{
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
 
-    public void BookAddToCartPage(){
-        loadWebPage(add_to_cart_url);
-    }
-
-    public void navigateToWriterPage(){
-        loginPage.loadLoginPage();
+    public void navigateToWriterPage(String phone_number, String pass){
+        loginPage.doLogin(phone_number, pass);
         homePage.HoverElement(homePage.writer_hover_btn);
         homePage.HoverElement(homePage.see_more);
     }

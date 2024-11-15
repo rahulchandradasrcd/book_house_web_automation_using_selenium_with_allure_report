@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage{
 
-    public String login_url = "https://bookhouse.com.bd/";
+    public String enter_user_auth_url = "https://bookhouse.com.bd/login?redirect=%2F";
 
     public By email_input_box = By.xpath("//input[@id='email']");
     public By pass_input_box = By.xpath("//input[@id='c-password']");
@@ -12,13 +12,19 @@ public class LoginPage extends BasePage{
 
     HomePage homePage = new HomePage();
 
-    public void loadLoginPage(){
-        loadWebPage(login_url);
+    public void loadLoginPageToEnterUser(){
+        loadWebPage(enter_user_auth_url);
     }
 
     public void navigateToLoginPage(){
         homePage.loadHomePage();
         homePage.HoverElement(homePage.sign_in_hover);
         homePage.HoverElement(homePage.login_hover_btn);
+    }
+    public void doLogin(String phone_number, String pass){
+        loadLoginPageToEnterUser();
+        writeOnElement(email_input_box, phone_number);
+        writeOnElement(pass_input_box, pass);
+        clickOnElement(login_btn);
     }
 }

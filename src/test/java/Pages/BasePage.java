@@ -3,6 +3,8 @@ package Pages;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ISelect;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.ByteArrayInputStream;
 
@@ -54,6 +56,13 @@ public class BasePage {
         JavascriptExecutor scroll = (JavascriptExecutor) getDriver();
         WebElement next_page = getElement(locator);
         scroll.executeScript("arguments[0].scrollIntoView()", next_page);
+    }
+
+    public void HandleDropDown(By locator){
+        WebElement drop_down = getElement(locator);
+        drop_down.click();
+        Select select = new Select(drop_down);
+        select.selectByVisibleText("locator");
     }
     public void addScreenshot() {
         Allure.addAttachment("After Test", new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
