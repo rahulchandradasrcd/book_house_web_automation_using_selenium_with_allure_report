@@ -3,10 +3,13 @@ package Pages;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ISelect;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
+import java.time.Duration;
 
 import static Utility.DriverSetup.getDriver;
 
@@ -46,6 +49,26 @@ public class BasePage {
         }
     }
 
+    public Boolean is_selected(By locator){
+        try {
+            return getElement(locator).isSelected();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public Boolean is_enabled(By locator){
+        try {
+            return getElement(locator).isEnabled();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public void GetText(By locator){
+        getElement(locator).getText();
+    }
+
     public void HoverElement(By locator){
         Actions actions = new Actions(getDriver());
         actions.moveToElement(getElement(locator)).build().perform();
@@ -58,12 +81,31 @@ public class BasePage {
         scroll.executeScript("arguments[0].scrollIntoView()", next_page);
     }
 
-    public void HandleDropDown(By locator){
-        WebElement drop_down = getElement(locator);
-        drop_down.click();
-        Select select = new Select(drop_down);
-        select.selectByVisibleText("locator");
+    public void HandleDropdown(By locator, String text) {
+        WebElement dropdown = getElement(locator);
+        dropdown.click();
+        for (WebElement option : dropdown.findElements(By.xpath("//li"))) {
+            if (option.getText().equals(text)) {
+                option.click();
+                break;
+            }
+        }
     }
+
+    public void webDriverWait(By locator){
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public String getAttributeName(By locator){
+        return getElement(locator).getAttribute("Message");
+    }
+
+    public void BrowserNavigate(){
+        getDriver().navigate().back();
+    }
+
     public void addScreenshot() {
         Allure.addAttachment("After Test", new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
     }

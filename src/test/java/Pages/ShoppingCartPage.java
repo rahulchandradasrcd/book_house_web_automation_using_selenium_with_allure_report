@@ -5,7 +5,8 @@ import org.openqa.selenium.By;
 
 public class ShoppingCartPage extends BasePage{
 
-    public String check_out_url = "https://bookhouse.com.bd/cart";
+    public By product_total1 = By.xpath("//td[contains(text(),'৳324')]");
+    public By product_total2 = By.xpath("//tbody/tr[1]/td[6]");
 
     public By add_quantity = By.xpath("(//input[@name='product_qty[]'])[1]");
     public By update_btn = By.xpath("//button[@id='btn-update']");

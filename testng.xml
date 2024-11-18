@@ -1,8 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="All Test Suite" parallel="tests" thread-count="4">
     <test verbose="2" preserve-order="true"
           name="D:/Rahul Personal/Web Automation/BookHouse.com.bdAutomationProjectPOM/BookHouseAutomationPOM/src/test/java/TestCases">
-        <classes/>
+        <classes>
+            <class name="TestCases.TestHomePage">
+                <methods>
+                    <include name="TestPageUrl"/>
+                    <include name="TestPageTitle"/>
+                </methods>
+            </class>
+            <class name="TestCases.TestLoginPage">
+                <methods>
+                    <include name="loginWithValidData"/>
+                </methods>
+            </class>
+            <class name="TestCases.TestWriterPage">
+                <methods>
+                    <include name="searchWriter"/>
+                    <include name="goToAuthorBooksPage"/>
+                    <include name="filterBookPublishers"/>
+                    <include name="goToNextPage"/>
+                    <include name="selectBook"/>
+                </methods>
+            </class>
+            <class name="TestCases.TestShoppingCartPage">
+                <methods>
+                    <include name="checkShoppingCartPageWithAddMoreQuantityBooks"/>
+                    <include name="removeExtraBooks"/>
+                </methods>
+            </class>
+            <class name="TestCases.TestCheckoutPage">
+                <methods>
+                    <include name="enterAlternatePhoneNumber"/>
+                    <include name="selectCity"/>
+                    <include name="selectArea"/>
+                    <include name="writePostOffice"/>
+                    <include name="writeAddress"/>
+                    <include name="writeOrderNote"/>
+                    <include name="orderGiftWrap"/>
+                    <include name="termsAndCondition"/>
+                    <include name="cashOnDelivery"/>
+                </methods>
+            </class>
+            <class name="TestCases.TestLogOutPage">
+                <methods>
+                    <include name="goToHomePageForLogout"/>
+                    <include name="logoutFromThisSite"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>
